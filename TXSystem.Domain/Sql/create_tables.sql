@@ -47,14 +47,15 @@ CREATE TABLE [Organizations]
     [AddressId] int
 )
 
+
 CREATE TABLE [Incomes]
 (
-    [Id]             int PRIMARY KEY IDENTITY (1, 1),
-    [PersonId]       int,
-    [OrganizationId] int,
-    [Type]           varchar(10) NOT NULL CHECK ([Type] IN ('Salary', 'Prize', 'Benefit', 'Passive')),
-    [Amount]         money,
-    [Created]        datetime2
+    [Id]       int PRIMARY KEY IDENTITY (1, 1),
+    [PersonId] int,
+    [Source]   varchar(15) NOT NULL CHECK ([Source] IN ('Self', 'Organization', 'Country', 'Other')),
+    [Type]     varchar(10) NOT NULL CHECK ([Type] IN ('Salary', 'Prize', 'Benefit', 'Other')),
+    [Amount]   money,
+    [Date]     datetime2
 )
 
 CREATE TABLE [Taxes]
@@ -83,7 +84,5 @@ ALTER TABLE [Cities]
     ADD FOREIGN KEY ([RegionId]) REFERENCES [Regions] ([Id])
 ALTER TABLE [Taxes]
     ADD FOREIGN KEY ([IncomeId]) REFERENCES [Incomes] ([Id])
-ALTER TABLE [Incomes]
-    ADD FOREIGN KEY ([OrganizationId]) REFERENCES [Organizations] ([Id])
 ALTER TABLE [Incomes]
     ADD FOREIGN KEY ([PersonId]) REFERENCES [Persons] ([Id])
