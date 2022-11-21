@@ -41,7 +41,10 @@ public sealed class SqlFileService
             }
 
             string createTablesSql = await ReadFileAsync("create_tables.sql");
-            string seedDataSql = await ReadFileAsync("seed_data.sql");
+            string seedDataSql = await ReadFileAsync("seed_defaults.sql");
+            string seedPersonsSql = await ReadFileAsync("seed_persons.sql");
+            string seedIncomesSql = await ReadFileAsync("seed_incomes.sql");
+            string seedTaxesSql = await ReadFileAsync("seed_taxes.sql");
             using var db = await _database.ConnectAsync();
 
             await db.ExecuteAsync(@$"
@@ -50,6 +53,9 @@ begin try
     {createTablesSql}
     commit transaction [installation]
     {seedDataSql}
+    {seedPersonsSql}
+    {seedIncomesSql}
+    {seedTaxesSql}
     commit transaction [installation]
 end try
 begin catch
