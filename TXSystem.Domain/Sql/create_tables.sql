@@ -2,12 +2,13 @@ CREATE TABLE [Persons]
 (
     [Id]             int PRIMARY KEY IDENTITY (1, 1),
     [CategoryId]     int,
+    [AddressId]      int,
     [OrganizationId] int,
     [FirstName]      nvarchar(100),
     [MiddleName]     nvarchar(100),
     [LastName]       nvarchar(100),
-    [VatIdNumber]    char(8),
-    [PassportNumber] char(13),
+    [VatIdNumber]    varchar(10),
+    [PassportNumber] varchar(11),
     [BirthDate]      datetime2
 )
 
@@ -32,7 +33,7 @@ CREATE TABLE [Cities]
 
 CREATE TABLE [Addresses]
 (
-    [PersonId]   int PRIMARY KEY,
+    [Id]         int PRIMARY KEY,
     [CityId]     int,
     [StreetName] nvarchar(200),
     [Building]   nvarchar(10),
@@ -41,9 +42,9 @@ CREATE TABLE [Addresses]
 
 CREATE TABLE [Organizations]
 (
-    [Id]      int PRIMARY KEY,
-    [Name]    int,
-    [Address] nvarchar(200)
+    [Id]        int PRIMARY KEY,
+    [Name]      int,
+    [AddressId] int
 )
 
 CREATE TABLE [Incomes]
@@ -51,7 +52,7 @@ CREATE TABLE [Incomes]
     [Id]             int PRIMARY KEY IDENTITY (1, 1),
     [PersonId]       int,
     [OrganizationId] int,
-    [Type]           nvarchar(255) NOT NULL CHECK ([Type] IN ('Salary', 'Prize', 'Benefit', 'Passive')),
+    [Type]           varchar(10) NOT NULL CHECK ([Type] IN ('Salary', 'Prize', 'Benefit', 'Passive')),
     [Amount]         money,
     [Created]        datetime2
 )
@@ -64,20 +65,22 @@ CREATE TABLE [Taxes]
     [Requested] datetime2,
     [Deadline]  datetime2,
     [Completed] datetime2,
-    [Status]    nvarchar(255) NOT NULL CHECK ([Status] IN
-                                              ('Requested', 'Processing', 'Completed', 'Denied', 'Aborted'))
+    [Status]    varchar(10) NOT NULL CHECK ([Status] IN
+                                            ('Requested', 'Processing', 'Completed', 'Denied', 'Aborted'))
 )
 
 ALTER TABLE [Persons]
     ADD FOREIGN KEY ([CategoryId]) REFERENCES [PersonCategory] ([Id])
 ALTER TABLE [Persons]
     ADD FOREIGN KEY ([OrganizationId]) REFERENCES [Organizations] ([Id])
-ALTER TABLE [Cities]
-    ADD FOREIGN KEY ([RegionId]) REFERENCES [Regions] ([Id])
-ALTER TABLE [Addresses]
-    ADD FOREIGN KEY ([PersonId]) REFERENCES [Persons] ([Id])
+ALTER TABLE [Persons]
+    ADD FOREIGN KEY ([AddressId]) REFERENCES [Addresses] ([Id])
+ALTER TABLE [Organizations]
+    ADD FOREIGN KEY ([AddressId]) REFERENCES [Addresses] ([Id])
 ALTER TABLE [Addresses]
     ADD FOREIGN KEY ([CityId]) REFERENCES [Cities] ([Id])
+ALTER TABLE [Cities]
+    ADD FOREIGN KEY ([RegionId]) REFERENCES [Regions] ([Id])
 ALTER TABLE [Taxes]
     ADD FOREIGN KEY ([IncomeId]) REFERENCES [Incomes] ([Id])
 ALTER TABLE [Incomes]
