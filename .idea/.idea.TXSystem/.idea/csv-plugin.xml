@@ -3,91 +3,6 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (10).csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (11).csv" />
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (12).csv" />
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (2).csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (3).csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (4).csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (4).csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (5).csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (6).csv" />
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (7).csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (8).csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (9).csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$USER_HOME$/Downloads/MOCK_DATA (9).csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$USER_HOME$/Downloads/TXSystem.Persons (3).csv" />
-        <entry key="$USER_HOME$/Downloads/TXSystem.Persons (4).csv" />
-        <entry key="$USER_HOME$/Downloads/TXSystem.Persons (6).csv" />
-        <entry key="$USER_HOME$/Downloads/TXSystem.Persons (7).csv" />
-        <entry key="$USER_HOME$/Downloads/TXSystem.Persons (8).csv" />
-        <entry key="$USER_HOME$/Downloads/TXSystem.Persons.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/../../Utils/source.csv">
           <value>
             <Attribute>
@@ -95,22 +10,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/../../Utils/source.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../../Utils/source.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry />
-        <entry />
       </map>
     </option>
   </component>
