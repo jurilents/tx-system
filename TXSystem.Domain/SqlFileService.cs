@@ -42,23 +42,21 @@ public sealed class SqlFileService
 
             string createTablesSql = await ReadFileAsync("create_tables.sql");
             string taxesCalcTriggerSql = await ReadFileAsync("taxes_calc_trigger.sql");
-
             string seedDataSql = await ReadFileAsync("seed_defaults.sql");
 
             using var db = await _database.ConnectAsync();
-            using var transaction = db.BeginTransaction();
+            using var ts = db.BeginTransaction();
             try
             {
-                await db.ExecuteAsync(createTablesSql);
-                await db.ExecuteAsync(taxesCalcTriggerSql);
-                transaction.Commit();
-                await db.ExecuteAsync(seedDataSql);
-                transaction.Commit();
+                await db.ExecuteManyAsync(createTablesSql, transaction: ts);
+                await db.ExecuteManyAsync(taxesCalcTriggerSql, transaction: ts);
+                await db.ExecuteManyAsync(seedDataSql, transaction: ts);
+                ts.Commit();
             }
             catch (Exception e)
             {
                 _logger.LogError(e, "Oh my! Something went wrong :(");
-                transaction.Rollback();
+                ts.Rollback();
             }
         }
         catch (Exception e)

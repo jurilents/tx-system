@@ -12,11 +12,15 @@ create table [Persons]
     [BirthDate]      datetime2
 )
 
+go
+
 create table [PersonCategory]
 (
     [Id]    int primary key identity (1, 1),
     [Title] nvarchar(20)
 )
+
+go
 
 create table [Regions]
 (
@@ -24,12 +28,16 @@ create table [Regions]
     [Name] nvarchar(200)
 )
 
+go
+
 create table [Cities]
 (
     [Id]       int primary key identity (1, 1),
     [RegionId] int,
     [Name]     nvarchar(200)
 )
+
+go
 
 create table [Addresses]
 (
@@ -40,12 +48,15 @@ create table [Addresses]
     [Apartment]  nvarchar(10)
 )
 
+go
+
 create table [Organizations]
 (
     [Id]   int primary key identity (1, 1),
     [Name] nvarchar(100)
 )
 
+go
 
 create table [Incomes]
 (
@@ -57,6 +68,8 @@ create table [Incomes]
     [Date]     datetime2
 )
 
+go
+
 create table [Taxes]
 (
     [Id]        int primary key identity (1, 1),
@@ -67,6 +80,8 @@ create table [Taxes]
     [Completed] datetime2,
     [Status]    varchar(10) not null check ([Status] in ('Requested', 'Processing', 'Completed', 'Denied', 'Aborted'))
 )
+
+go
 
 alter table [Persons]
     add foreign key ([CategoryId]) references [PersonCategory] ([Id])
