@@ -16,8 +16,9 @@ go
 
 create table [PersonCategory]
 (
-    [Id]    int primary key identity (1, 1),
-    [Title] nvarchar(20)
+    [Id]          int primary key identity (1, 1),
+    [TaxSaleCoef] decimal(18, 8),
+    [Title]       nvarchar(20)
 )
 
 go

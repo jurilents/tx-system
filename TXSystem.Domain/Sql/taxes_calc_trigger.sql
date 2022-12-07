@@ -1,10 +1,14 @@
-create or alter function dbo.fn_CalcPersonTaxSale(@PersonId as int)
+create or alter function dbo.fn_CalcPersonTaxCoef(@PersonId as int)
     returns decimal(18, 8) as
 begin
-    declare @result as decimal(18, 8)
-    select @result = cast(1.25 as decimal(18, 8))
-    --     select * from Persons
-    return (@result)
+    declare @saleCoef as decimal(18, 8);
+
+    select @saleCoef = pc.TaxSaleCoef
+    from dbo.Persons p
+             join PersonCategory pc on pc.Id = p.CategoryId
+    where p.CategoryId = @PersonId;
+
+    return iif(@saleCoef > 1.0, 0.1, 1.0 - @saleCoef);
 end
 
 go
@@ -12,23 +16,15 @@ go
 create or alter trigger dbo.tr_ins_CalcTaxes
     on dbo.Incomes
     after insert
-    as declare
-    @IncomeId         int ,
-    @PersonId         int ,
-    @PersonCategoryId int ,
-    @Type             varchar(10) ,
-    @TaxAmount        money ,
-    @Date             datetime2 ;
-
-    select @IncomeId = ins.Id,
-           @PersonId = ins.PersonId,
-           @PersonCategoryId = p.CategoryId,
-           @Type = ins.Type,
-           @TaxAmount = ins.Amount * 0.15 * dbo.fn_CalcPersonTaxSale(@PersonId),
-           @Date = ins.Date
+    as
+    insert into dbo.Taxes (IncomeId, Amount, Requested, Deadline, Completed, Status)
+    select ins.Id,
+           ins.Amount * dbo.fn_CalcPersonTaxCoef(ins.PersonId),
+           ins.Date,
+           dateadd(day, 21, ins.Date),
+           null,
+           N'Requested'
     from INSERTED ins
              join dbo.Persons p on ins.PersonId = p.Id;
-    insert into dbo.Taxes (IncomeId, Amount, Requested, Deadline, Completed, Status)
-    values (@IncomeId, @TaxAmount, @Date, dateadd(day, 21, @Date), null, N'Requested');
 
     print 'Taxes updated.';
