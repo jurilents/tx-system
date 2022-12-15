@@ -17,8 +17,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NeerCore.Api" Version="1.6.1" />
-    <PackageReference Include="NeerCore.Logging.NLog" Version="1.6.2" />
+    <PackageReference Include="NeerCore.Api" Version="2.0.0-alpha1" />
+    <PackageReference Include="NeerCore.Logging.NLog" Version="2.0.0-alpha1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0" />
   </ItemGroup>
 

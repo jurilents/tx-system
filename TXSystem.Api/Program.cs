@@ -1,6 +1,6 @@
 using NeerCore.Api;
 using NeerCore.Api.Extensions;
-using NeerCore.Api.Extensions.Swagger;
+using NeerCore.Api.Swagger.Extensions;
 using NeerCore.Logging;
 using NeerCore.Logging.Extensions;
 using NLog;
@@ -45,13 +45,13 @@ static void ConfigureBuilder(WebApplicationBuilder builder)
 static void ConfigureWebApp(WebApplication app)
 {
     if (app.Configuration.GetSwaggerSettings().Enabled)
-        app.UseCustomSwagger();
+        app.UseNeerSwagger();
 
     app.UseCors(CorsPolicies.AcceptAll);
     app.UseHttpsRedirection();
 
     app.UseRequestLocalization();
-    app.UseCustomExceptionHandler();
+    app.UseNeerExceptionHandler();
 
     app.UseAuthentication();
     app.UseAuthorization();

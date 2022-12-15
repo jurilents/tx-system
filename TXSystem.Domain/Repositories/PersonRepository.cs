@@ -4,7 +4,7 @@ using TXSystem.Domain.Entities;
 
 namespace TXSystem.Domain.Repositories;
 
-[Injectable]
+[Service]
 public class PersonRepository
 {
     private readonly DatabaseFacade _database;

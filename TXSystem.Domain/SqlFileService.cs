@@ -7,7 +7,7 @@ using TXSystem.Domain.Extensions;
 
 namespace TXSystem.Domain;
 
-[Injectable]
+[Service]
 public sealed class SqlFileService
 {
     private const string DatabaseSectionName = "Database=";
@@ -30,6 +30,13 @@ public sealed class SqlFileService
 
     public async Task InstallDatabaseAsync()
     {
+        // If migrations already applied, just skip this step
+        if (await IsDbAlreadyCreated())
+        {
+            _logger.LogInformation("Migrations did not apply, because database is already up to date");
+            return;
+        }
+
         try
         {
             // Try to create a database
@@ -69,5 +76,13 @@ public sealed class SqlFileService
     {
         string path = Path.Join(_scriptsPath, filename);
         return await File.ReadAllTextAsync(path);
+    }
+
+    private async Task<bool> IsDbAlreadyCreated()
+    {
+        string sql = await ReadFileAsync("check_tables_exists.sql");
+        var db = await _database.ConnectAsync();
+        var result = await db.ExecuteScalarAsync<int>(sql);
+        return result > 0;
     }
 }
