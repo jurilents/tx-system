@@ -1,0 +1,4 @@
+SELECT count(*) as DataExists
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_SCHEMA = 'dbo'
+  AND TABLE_NAME = 'Persons'

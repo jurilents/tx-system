@@ -1,0 +1,58 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+footer, header {
+    color: white;
+}
+
+html, body {
+    background-color: #e8ebf8;
+}
+
+.home-list {
+    list-style: none;
+    margin-top: 50px;
+    font-size: 1.25rem;
+    text-align: left;
+}
+
+.home-list span {
+    font-size: 1rem;
+}
+
+.footer-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+form {
+    display: grid;
+}
+
+form > button {
+    margin-top: 2rem;
+}
+
+.card {
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="docker@localhost" uuid="9fd1a4e1-30a7-4905-8907-8d7a2b7c6240">
-      <driver-ref>sqlserver.jb</driver-ref>
+    <data-source source="LOCAL" name="docker-fix@localhost" uuid="34b9ccde-fb1e-436f-880d-3d909d377757">
+      <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
-      <jdbc-url>Server=localhost,1433</jdbc-url>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://localhost</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

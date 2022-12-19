@@ -8,7 +8,7 @@ namespace TXSystem.Domain;
 
 public record ConnectionInfo(string ConnectionString, string Server, string Database);
 
-[Injectable]
+[Service]
 public sealed class DatabaseFacade
 {
     public ConnectionInfo Connection { get; }
