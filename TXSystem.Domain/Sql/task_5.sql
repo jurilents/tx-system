@@ -11,6 +11,14 @@ end
 
 go
 
-select *
+select Id,
+       CategoryId,
+       OrganizationId,
+       FirstName,
+       LastName,
+       MiddleName,
+       VatIdNumber,
+       PassportNumber,
+       BirthDate
 from dbo.Persons p
 where dbo.fn_CalcIncomeTypes(p.Id) = 4 -- now system has total 4 income types

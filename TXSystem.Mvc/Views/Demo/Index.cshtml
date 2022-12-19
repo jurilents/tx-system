@@ -1,0 +1,38 @@
+@model TXSystem.Domain.Models.TableInfo
+
+<div class="footer-buttons">
+    @if (Model.DemoIndex > 1)
+    {
+        <a class="btn btn-dark" asp-controller="Demo" asp-action="Index" asp-route-idx="@(Model.DemoIndex - 1)">PREV (@(Model.DemoIndex - 1))</a>
+    }
+    else
+    {
+        <span></span>
+    }
+    @if (Model.DemoIndex < 8)
+    {
+        <a class="btn btn-dark" asp-controller="Demo" asp-action="Index" asp-route-idx="@(Model.DemoIndex + 1)">NEXT (@(Model.DemoIndex + 1))</a>
+    }
+</div>
+
+<table class="table table-striped table-dark table-hover table-bordered">
+    <thead>
+    <tr>
+        @foreach (var column in Model.Columns)
+        {
+            <th scope="col">@column</th>
+        }
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var row in Model.Data)
+    {
+        <tr>
+            @foreach (var item in row)
+            {
+                <td>@item</td>
+            }
+        </tr>
+    }
+    </tbody>
+</table>

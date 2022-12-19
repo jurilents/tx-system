@@ -65,13 +65,13 @@ public sealed class SqlFileService
         return await db.QueryAsync<Demo4Model>(sql);
     }
 
-    public async Task<IEnumerable<Person>> Demo5Async()
+    public async Task<IEnumerable<PersonModel>> Demo5Async()
     {
         string sql = await ReadFileAsync("task_5.sql");
         string[] queries = sql.Split(QuerySeparator);
         using var db = await _database.ConnectAsync();
         await db.ExecuteAsync(queries[0]);
-        return await db.QueryAsync<Person>(queries[1]);
+        return await db.QueryAsync<PersonModel>(queries[1]);
     }
 
     public async Task<IEnumerable<Demo6Model>> Demo6Async()
