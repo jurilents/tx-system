@@ -221,7 +221,7 @@ values (4, 'Organization', 'Salary', 1000.00, '2022-05-21 13:29:08');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
 values (15, 'Organization', 'Salary', 900.00, '2021-03-04 08:29:47');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
-values (1, 'Organization', 'Salary', 600.00, '2021-05-13 09:08:36');
+values (1, 'Organization', 'Salary', 600.00, '2021-12-13 09:08:36');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
 values (2, 'Organization', 'Salary', 900.00, '2021-06-30 08:16:16');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
@@ -1182,7 +1182,7 @@ values (25, 'Organization', 'Salary', 430, '2020-12-17 09:07:42');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
 values (19, 'Organization', 'Salary', 670, '2022-07-07 16:34:22');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
-values (21, 'Organization', 'Salary', 490, '2022-06-02 08:37:32');
+values (21, 'Organization', 'Salary', 490, '2021-12-02 08:37:32');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
 values (19, 'Organization', 'Salary', 280, '2021-05-18 17:15:20');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
@@ -1192,11 +1192,11 @@ values (2, 'Organization', 'Salary', 540, '2022-05-14 09:30:36');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
 values (13, 'Organization', 'Salary', 980, '2021-02-25 15:02:08');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
-values (23, 'Organization', 'Salary', 670, '2021-08-14 03:22:28');
+values (23, 'Organization', 'Salary', 670, '2021-12-14 03:22:28');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
 values (10, 'Organization', 'Salary', 570, '2021-08-24 18:34:41');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
-values (23, 'Organization', 'Salary', 850, '2021-10-06 12:59:27');
+values (23, 'Organization', 'Salary', 850, '2021-12-12 12:59:27');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
 values (5, 'Organization', 'Salary', 840, '2022-05-12 15:03:50');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
@@ -1240,9 +1240,9 @@ values (21, 'Organization', 'Salary', 250, '2021-11-21 10:03:47');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
 values (12, 'Organization', 'Salary', 760, '2021-11-13 07:05:06');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
-values (5, 'Organization', 'Salary', 340, '2022-02-20 06:16:58');
+values (5, 'Organization', 'Salary', 340, '2022-12-12 06:16:58');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
-values (5, 'Organization', 'Salary', 890, '2020-09-06 14:18:45');
+values (5, 'Organization', 'Salary', 890, '2021-12-12 14:18:45');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
 values (10, 'Organization', 'Salary', 760, '2020-09-03 00:27:05');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
@@ -1261,3 +1261,13 @@ insert into Incomes (PersonId, Source, Type, Amount, Date)
 values (20, 'Organization', 'Salary', 330, '2021-11-27 15:18:08');
 insert into Incomes (PersonId, Source, Type, Amount, Date)
 values (15, 'Organization', 'Salary', 750, '2022-08-19 00:46:21');
+
+go
+
+with TaxesToUpdate as (select top 400 *
+                       from dbo.Taxes
+                       order by newid())
+
+update t
+set t.Completed = dateadd(second, cast(rand(checksum(newid())) * 28 * 24 * 60 * 60 as int) + 60 * 12, t.Requested)
+from TaxesToUpdate t

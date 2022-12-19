@@ -5,8 +5,10 @@ using TXSystem.Domain.Entities;
 namespace TXSystem.Domain.Repositories;
 
 [Service]
-public class PersonRepository
+public sealed class PersonRepository
 {
+    private const string TableName = "dbo.Persons";
+
     private readonly DatabaseFacade _database;
     public PersonRepository(DatabaseFacade database) => _database = database;
 
@@ -14,6 +16,6 @@ public class PersonRepository
     public async Task<Person> GetByIdAsync()
     {
         using var db = await _database.ConnectAsync();
-        return await db.QueryFirstAsync<Person>(@"select * from dbo.Persons");
+        return await db.QueryFirstAsync<Person>($@"select * from {TableName}");
     }
 }

@@ -39,7 +39,7 @@ static void ConfigureBuilder(WebApplicationBuilder builder)
     builder.Logging.ConfigureNLogAsDefault();
 
     builder.Services.AddSqlServerDatabase(builder.Configuration);
-    builder.Services.AddWebApi(builder.Configuration);
+    builder.Services.AddWebApi();
 }
 
 static void ConfigureWebApp(WebApplication app)
