@@ -18,4 +18,23 @@ public sealed class PersonRepository
         using var db = await _database.ConnectAsync();
         return await db.QueryFirstAsync<Person>($@"select * from {TableName}");
     }
+
+    public async Task<IEnumerable<PersonCategory>> GetAllCatsAsync()
+    {
+        using var db = await _database.ConnectAsync();
+        return await db.QueryAsync<PersonCategory>(@"select * from dbo.PersonCategories");
+    }
+
+    public async Task<IEnumerable<Organization>> GetAllOrgsAsync()
+    {
+        using var db = await _database.ConnectAsync();
+        return await db.QueryAsync<Organization>(@"select * from dbo.Organizations");
+    }
+
+    //     public async Task<Person> CreateAsync()
+    //     {
+    //         using var db = await _database.ConnectAsync();
+    //         db.ExecuteAsync($@"insert into {TableName} values (FirstName, MiddleName, LastName, VatIdNumber, PassportNumber, BirthDate)
+    // ")
+    //     }
 }

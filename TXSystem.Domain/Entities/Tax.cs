@@ -11,6 +11,4 @@ public sealed class Tax
     public DateTime Deadline { get; init; }
     public DateTime Completed { get; init; }
     public PaymentStatus Status { get; init; }
-
-    public Income? Income { get; init; }
 }
