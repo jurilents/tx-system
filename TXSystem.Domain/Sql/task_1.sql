@@ -21,6 +21,4 @@ select o.Id, o.Name, sum(pd.TotalDebt) as TotalDebt
 from dbo.Organizations o
          join PersonsWithDept pd on o.Id = pd.OrganizationId
 group by o.Id, o.Name
-order by TotalDebt desc 
-
-
+order by TotalDebt desc

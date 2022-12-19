@@ -3,4 +3,3 @@ select year(ot.Requested) as YearNumner,
 from dbo.v_OrganizationTaxes ot
 where ot.PersonId = 1
 group by year(ot.Requested)
-

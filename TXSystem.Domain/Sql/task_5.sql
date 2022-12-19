@@ -14,4 +14,3 @@ go
 select *
 from dbo.Persons p
 where dbo.fn_CalcIncomeTypes(p.Id) = 4 -- now system has total 4 income types
-

@@ -11,5 +11,3 @@ select ot.PersonId,
         order by ot_.Amount desc) as MaxTaxesRequested
 from dbo.v_OrganizationTaxes ot
 group by ot.PersonId
-
-

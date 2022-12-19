@@ -14,5 +14,3 @@ from dbo.v_OrganizationTaxes ot
 where year(ot.Requested) = year(getdate() - 1)
 group by month(ot.Requested), datename(month, ot.Requested)
 order by MonthNumber
-
-

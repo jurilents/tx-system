@@ -4,4 +4,3 @@ from dbo.Taxes t
 where t.Completed is not null
   and t.Requested > dateadd(month, -3, getutcdate())
 group by i.Type
-
