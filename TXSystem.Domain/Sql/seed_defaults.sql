@@ -1,24 +1,24 @@
-set identity_insert dbo.Regions on
-insert into dbo.Regions (Id, Name)
+set identity_insert [Regions] on
+insert into [Regions] (Id, Name)
 values (1, 'Ukraine'),
        (2, 'Ireland'),
        (3, 'Japan');
-set identity_insert dbo.Regions off
+set identity_insert [Regions] off
 
 go
 
-set identity_insert dbo.Cities on
-insert into dbo.Cities (Id, RegionId, Name)
+set identity_insert [Cities] on
+insert into [Cities] (Id, RegionId, Name)
 values (1, 1, 'Kyiv'),
        (2, 1, 'Pavlivka'),
        (3, 1, 'Zhytomyr'),
        (4, 2, 'Dublin'),
        (5, 3, 'Osaka');
-set identity_insert dbo.Cities off
+set identity_insert [Cities] off
 
 go
 
-insert into dbo.Addresses (CityId, StreetName, Building, Apartment)
+insert into [Addresses] (CityId, StreetName, Building, Apartment)
 values (4, 'Stang', '14', '375'),
        (3, 'Meadow Vale', '30', '40'),
        (5, 'Rusk', '26', '372'),
@@ -47,18 +47,18 @@ values (4, 'Stang', '14', '375'),
 
 go
 
-set identity_insert dbo.PersonCategory on
-insert into dbo.PersonCategory (Id, TaxSaleCoef, Title)
+set identity_insert [PersonCategory] on
+insert into [PersonCategory] (Id, TaxSaleCoef, Title)
 values (1, 0.90, 'Special'),
        (2, 0.25, 'Student'),
        (3, 0.40, 'Adult'),
        (4, 0.05, 'Worker');
-set identity_insert dbo.PersonCategory off
+set identity_insert [PersonCategory] off
 
 go
 
-set identity_insert dbo.Organizations on
-insert into dbo.Organizations (Id, Name)
+set identity_insert [Organizations] on
+insert into [Organizations] (Id, Name)
 values (1, 'Shindows'),
        (2, 'Azazone'),
        (3, 'Megasoft'),
@@ -66,12 +66,12 @@ values (1, 'Shindows'),
        (5, 'Feedbook'),
        (6, 'Netflex'),
        (7, 'Abobas Inc.');
-set identity_insert dbo.Organizations off
+set identity_insert [Organizations] off
 
 go
 
-insert into Persons (FirstName, LastName, MiddleName, VatIdNumber,
-                     PassportNumber, BirthDate, CategoryId, OrganizationId, AddressId)
+insert into [Persons] (FirstName, LastName, MiddleName, VatIdNumber,
+                       PassportNumber, BirthDate, CategoryId, OrganizationId, AddressId)
 values ('Jeanelle', 'Renshell', 'Leonidas', '2001884753', '05-096-8937', '1992-03-12 00:00:00', 4, 3, 1),
        ('Andrea', 'Paolazzi', null, '6971866657', '33-490-4909', '1969-01-09 00:00:00', 4, 6, 2),
        ('Shaina', 'Toplin', 'Matthaeus', '3766981099', '45-819-9820', '1992-10-29 00:00:00', 4, 3, 3),
@@ -1265,7 +1265,7 @@ values (15, 'Organization', 'Salary', 750, '2022-08-19 00:46:21');
 go
 
 with TaxesToUpdate as (select top 400 *
-                       from dbo.Taxes
+                       from Taxes
                        order by newid())
 
 update t

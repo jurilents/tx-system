@@ -7,7 +7,7 @@ namespace TXSystem.Domain.Repositories;
 [Service]
 public sealed class PersonRepository
 {
-    private const string TableName = "dbo.Persons";
+    private const string TableName = "Persons";
 
     private readonly DatabaseFacade _database;
     public PersonRepository(DatabaseFacade database) => _database = database;
@@ -22,13 +22,13 @@ public sealed class PersonRepository
     public async Task<IEnumerable<PersonCategory>> GetAllCatsAsync()
     {
         using var db = await _database.ConnectAsync();
-        return await db.QueryAsync<PersonCategory>(@"select * from dbo.PersonCategories");
+        return await db.QueryAsync<PersonCategory>(@"select * from PersonCategories");
     }
 
     public async Task<IEnumerable<Organization>> GetAllOrgsAsync()
     {
         using var db = await _database.ConnectAsync();
-        return await db.QueryAsync<Organization>(@"select * from dbo.Organizations");
+        return await db.QueryAsync<Organization>(@"select * from Organizations");
     }
 
     //     public async Task<Person> CreateAsync()

@@ -1,11 +1,11 @@
-create or alter procedure dbo.sp_DelayedTaxesPenalty @TaxId as int
+create or alter procedure sp_DelayedTaxesPenalty @TaxId as int
 as
 begin
     declare @TaxRequested datetime2;
     declare @TaxCompleted datetime2;
 
     select @TaxCompleted = t.Completed
-    from dbo.Taxes t
+    from Taxes t
     where t.Id = @TaxId;
 
     if @TaxCompleted is not null return
@@ -18,7 +18,7 @@ begin
 
             select @TaxRequested = t.Requested,
                    @TaxCompleted = t.Completed
-            from dbo.Taxes t
+            from Taxes t
             where t.Id = @TaxId;
 
             if @TaxCompleted is not null return
@@ -26,7 +26,7 @@ begin
             if @TaxRequested < dateadd(day, 21, getutcdate())
                 update t
                 set t.Amount = t.Amount * 1.15
-                from dbo.Taxes t
+                from Taxes t
                 where t.Id = @TaxId
         end
 end

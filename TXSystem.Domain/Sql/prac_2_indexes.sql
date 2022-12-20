@@ -6,10 +6,10 @@ from Incomes
 where Source = 'Organization'
 
 
-insert into dbo.Incomes (PersonId, Source, Type, Amount, Date)
+insert into Incomes (PersonId, Source, Type, Amount, Date)
 values (25, 'Organization', 'Salary', 430, '2020-12-17 09:07:42');
 
-update dbo.Incomes
+update Incomes
 set Amount = 4000,
     Source = 'Organization'
 where Id < 5

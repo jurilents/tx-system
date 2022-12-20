@@ -8,7 +8,7 @@ namespace TXSystem.Domain.Repositories;
 [Service]
 public sealed class IncomeRepository
 {
-    private const string TableName = "dbo.Incomes";
+    private const string TableName = "Incomes";
     private readonly DatabaseFacade _database;
     public IncomeRepository(DatabaseFacade database) => _database = database;
 
@@ -23,19 +23,19 @@ public sealed class IncomeRepository
     {
         var date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         using var db = await _database.ConnectAsync();
-        await db.ExecuteAsync($@"insert into dbo.Incomes (PersonId, Source, Type, Amount, Date) values
+        await db.ExecuteAsync($@"insert into Incomes (PersonId, Source, Type, Amount, Date) values
                             ({model.PersonId}, '{model.Source}', '{model.Type}', {model.Amount}, '{date}')");
     }
 
     public async Task<IEnumerable<Income>> GetAllAsync()
     {
         using var db = await _database.ConnectAsync();
-        return await db.QueryAsync<Income>(@"select * from dbo.Incomes order by id desc");
+        return await db.QueryAsync<Income>(@"select * from Incomes order by id desc");
     }
 
     public async Task<IEnumerable<Tax>> GetAllTaxesAsync()
     {
         using var db = await _database.ConnectAsync();
-        return await db.QueryAsync<Tax>(@"select * from dbo.Taxes order by id desc");
+        return await db.QueryAsync<Tax>(@"select * from Taxes order by id desc");
     }
 }

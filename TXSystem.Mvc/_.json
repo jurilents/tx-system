@@ -9,6 +9,9 @@
       "LogsDirectoryPath": "~/../../../logs/"
     }
   },
+  "ConnectionStrings": {
+//    "Default": "Server=localhost,1433;Database=TXSystem1;User=sa;Password=MyPassword1234;MultipleActiveResultSets=True"
+  },
   "Swagger": {
     "Enabled": true
   }

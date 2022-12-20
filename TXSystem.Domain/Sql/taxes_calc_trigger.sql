@@ -4,7 +4,7 @@ begin
     declare @SaleCoef as decimal(18, 8);
 
     select @SaleCoef = pc.TaxSaleCoef
-    from dbo.Persons p
+    from Persons p
              join PersonCategory pc on pc.Id = p.CategoryId
     where p.Id = @PersonId;
 
@@ -13,11 +13,11 @@ end
 
 go
 
-create or alter trigger dbo.tr_ins_CalcTaxes
-    on dbo.Incomes
+create or alter trigger tr_ins_CalcTaxes
+    on Incomes
     after insert
     as
-    insert into dbo.Taxes (IncomeId, Amount, Requested, Deadline, Completed, Status)
+    insert into Taxes (IncomeId, Amount, Requested, Deadline, Completed, Status)
     select ins.Id,
            isnull(ins.Amount * dbo.fn_CalcPersonTaxCoef(ins.PersonId), cast(0 as money)),
            ins.Date,
@@ -25,7 +25,7 @@ create or alter trigger dbo.tr_ins_CalcTaxes
            null,
            N'Requested'
     from INSERTED ins
-             join dbo.Persons p on ins.PersonId = p.Id;
+             join Persons p on ins.PersonId = p.Id;
 
     print 'Taxes updated.';
 

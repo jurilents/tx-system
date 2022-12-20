@@ -9,7 +9,7 @@ go
 select month(ot.Requested)                      as MonthNumber,
        datename(month, ot.Requested)            as MonthName,
        isnull(sum(ot.Amount), cast(0 as money)) as TotalTaxes
-from dbo.v_OrganizationTaxes ot
+from v_OrganizationTaxes ot
          join Organizations o on o.Id = ot.OrganizationId
 where year(ot.Requested) = year(getdate() - 1)
 group by month(ot.Requested), datename(month, ot.Requested)
