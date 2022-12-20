@@ -4,7 +4,7 @@ as
 begin
     declare @Result as money;
     select @Result = sum(t.Amount)
-    from dbo.Persons p
+    from Persons p
              join Incomes i on p.Id = i.PersonId
              join Taxes t on i.Id = t.IncomeId and dateadd(day, 21, t.Deadline) < getutcdate()
     where p.Id = @PersonId
@@ -16,9 +16,9 @@ go
 with PersonsWithDept as
          (select p.OrganizationId,
                  dbo.fn_CalcPersonDebt(p.Id) as TotalDebt
-          from dbo.Persons p)
+          from Persons p)
 select o.Id, o.Name, sum(pd.TotalDebt) as TotalDebt
-from dbo.Organizations o
+from Organizations o
          join PersonsWithDept pd on o.Id = pd.OrganizationId
 group by o.Id, o.Name
 order by TotalDebt desc

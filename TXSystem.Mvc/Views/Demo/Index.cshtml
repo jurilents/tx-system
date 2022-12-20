@@ -7,13 +7,20 @@
     }
     else
     {
-        <span></span>
+        <div style="min-width: 102px;"></div>
     }
+    <h2>Demo #@Model.DemoIndex</h2>
     @if (Model.DemoIndex < 8)
     {
         <a class="btn btn-dark" asp-controller="Demo" asp-action="Index" asp-route-idx="@(Model.DemoIndex + 1)">ВПЕРЕД (@(Model.DemoIndex + 1))</a>
     }
+    else
+    {
+        <div style="min-width: 102px;"></div>
+    }
 </div>
+
+<p style="text-align: center">@DemoDescriptions.Values[Model.DemoIndex - 1]</p>
 
 <table class="table table-striped table-dark table-hover table-bordered">
     <thead>

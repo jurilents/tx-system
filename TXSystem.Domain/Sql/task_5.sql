@@ -4,7 +4,7 @@ begin
     declare @Result as int;
     select @Result =
            (select count(distinct i.Type)
-            from dbo.Incomes i
+            from Incomes i
             where i.PersonId = @PersonId)
     return @Result;
 end
@@ -20,5 +20,5 @@ select Id,
        VatIdNumber,
        PassportNumber,
        BirthDate
-from dbo.Persons p
+from Persons p
 where dbo.fn_CalcIncomeTypes(p.Id) = 4 -- now system has total 4 income types

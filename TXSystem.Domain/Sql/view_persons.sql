@@ -1,3 +1,3 @@
 select *
-from dbo.Persons
+from Persons
          join Incomes i on Persons.Id = i.PersonId

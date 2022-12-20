@@ -1,9 +1,7 @@
-using System.Data.SqlClient;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NeerCore.DependencyInjection;
-using TXSystem.Domain.Entities;
 using TXSystem.Domain.Extensions;
 using TXSystem.Domain.Models;
 
@@ -14,6 +12,7 @@ public sealed class SqlFileService
 {
     private const string QuerySeparator = "\ngo\n";
     private const string DatabaseSectionName = "Database=";
+    private const string DatabaseSectionNameAlt = "Data Source=";
 
     private readonly string _rootConnectionString;
     private readonly ILogger<SqlFileService> _logger;
@@ -26,8 +25,10 @@ public sealed class SqlFileService
         _logger = logger;
         _database = database;
         var connection = configuration.GetDefaultConnectionString().Split(';');
-        _databaseName = connection.First(s => s.StartsWith(DatabaseSectionName)).Replace(DatabaseSectionName, "");
-        _rootConnectionString = string.Join(";", connection.Where(s => !s.StartsWith(DatabaseSectionName)));
+        var dbn = connection.FirstOrDefault(s => s.StartsWith(DatabaseSectionName))
+                  ?? connection.FirstOrDefault(s => s.StartsWith(DatabaseSectionNameAlt));
+        _databaseName = dbn.Replace(DatabaseSectionName, "").Replace(DatabaseSectionNameAlt, "");
+        _rootConnectionString = string.Join(";", connection.Where(s => !s.StartsWith(DatabaseSectionName) && !s.StartsWith(DatabaseSectionNameAlt)));
         _scriptsPath = Path.Join(AppDomain.CurrentDomain.BaseDirectory, "Sql");
     }
 
@@ -111,12 +112,12 @@ public sealed class SqlFileService
         try
         {
             // Try to create a database
-            string sql = await ReadFileAsync("create_database.sql");
-            await using (var sysDb = new SqlConnection(_rootConnectionString))
-            {
-                await sysDb.OpenAsync();
-                await sysDb.ExecuteAsync(sql.Replace("[database_name]", _databaseName));
-            }
+            // string sql = await ReadFileAsync("create_database.sql");
+            // await using (var sysDb = new SqlConnection(_rootConnectionString))
+            // {
+            //     await sysDb.OpenAsync();
+            //     await sysDb.ExecuteAsync(sql.Replace("[database_name]", _databaseName));
+            // }
 
             string createTablesSql = await ReadFileAsync("create_tables.sql");
             string taxesCalcTriggerSql = await ReadFileAsync("taxes_calc_trigger.sql");

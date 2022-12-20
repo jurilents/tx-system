@@ -20,6 +20,7 @@
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Dapper.Transaction" Version="2.0.35.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="NeerCore.DependencyInjection" Version="2.0.0-alpha1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
@@ -27,12 +28,6 @@
 
   <ItemGroup>
     <None Include="Sql\**" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
-      <HintPath>..\..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\6.0.10\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
