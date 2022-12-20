@@ -9,6 +9,6 @@ public sealed class Tax
     public decimal Amount { get; init; }
     public DateTime Requested { get; init; }
     public DateTime Deadline { get; init; }
-    public DateTime Completed { get; init; }
+    public DateTime? Completed { get; init; }
     public PaymentStatus Status { get; init; }
 }
